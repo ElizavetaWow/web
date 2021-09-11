@@ -1,0 +1,54 @@
+body {
+    margin-left:10%;
+    margin-right:10%;
+    background:#F0FEFB;
+} 
+table{
+    width: 100%;
+    background:white;
+}
+td{
+    width: 50% ;
+}
+form{
+    background:white;
+    height: 100%;
+}
+p{
+    padding: 1%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    font-size: 18px;
+}
+h1{
+    margin-left: auto;
+    margin-right: auto; 
+    width: 10em;
+}
+textarea{
+    max-width: fit-content;
+}
+.inpbtn{
+    display: block;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+	background: #22A522;
+	color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    font-size: 18px;
+}
+.answer {
+    display: block;
+    background:white;
+	font-size: 18px;
+    padding: 10px;
+    width: auto;
+    height: 100%;
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+</head>
+
+<body>
+    <table border="1">
+        <tr>
+            <td>
+                <form NAME="order">
+                    <h1>Формирование заказа</h1>
+                    <p>
+                        <b>Фамилия:</b><br><input type="text" id="surname" size="40">
+                    </p>
+                    <p>
+                        <b>Имя:</b><br> <input type="text" id="name" size="40">
+                    </p>
+                    <p>
+                        <b>Email:</b><br> <input type="email" id="email" size="40">
+                    </p>
+                    <p>
+                        <b>Дата доставки:</b><br>
+                        <input type="date" id="date">
+                    </p>
+                    <p>
+                        <b>Время доставки:</b><br>
+                        <input type="time" id="time" value="09:00">
+                    </p>
+                    <p>
+                        <b>Адрес доставки:</b><br>
+                        <textarea id="place" cols="40" rows="3"></textarea>
+                    </p>
+                    <p>
+                        <b>Товар:</b><br>
+                        <input type="radio" name="item" id="r1" value="Тюльпаны" checked> Тюльпаны<br>
+                        <input type="radio" name="item" id="r2" value="Гиацинты"> Гиацинты<br>
+                        <input type="radio" name="item" id="r3" value="Нарциссы"> Нарциссы<br>
+                    </p>
+                    <p>
+                        <b>Количество луковиц:</b><br>
+                        <input type="range" id="n" min="1" max="15" value="1" size="40"
+                            onchange="document.getElementById('nValue').innerHTML = this.value;">
+                        <span id="nValue">1</span>
+                    </p>
+                    <input type="button" class="inpbtn" id="createBtn" value="Сформировать документ"
+                        onclick="createDoc()">
+                </form>
+            </td>
+            <td>
+                <label id="resultDoc" class="answer" readonly></label>
+            </td>
+        </tr>
+    </table>
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>

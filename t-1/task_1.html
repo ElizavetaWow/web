@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Крылова Елизавета Вариант 2</h2>
+    <h3></h3>
+    <label>
+        В окне 2 элемента: элемент для ввода текста и кнопка. Вводится строка. По нажатию кнопки строка удваивается.
+        <br>
+        <br>
+        Доступ к элементам обеспечить с помощью 3) имени формы и имени элемента.
+        Способ назначения обработчиков событий 3) cпециальный метод addEventListener.
+    </label>
+    <form name="dblForm"> <br>
+        <input type="button" name="btn" value="Удвоить">
+        <script>
+            function doubling() {
+                let x = dblForm.txt.value
+                dblForm.txt.value = x.repeat(2);
+            };
+            dblForm.btn.addEventListener("click", doubling);
+        </script>
+        <br>
+        <br>
+        <textarea name="txt" cols="100" rows="20"></textarea>
+    </form>
+</body>
+
+</html>
