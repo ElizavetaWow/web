@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <h2>Крылова Елизавета Вариант 15</h2>
+    <form>
+        <label>
+            В HTML-документе определены 2 формы. При нажатии на кнопки первой формы на второй форме генерируются
+            элементы
+            (а) TABLE с заданными размерами и кнопка.
+            (б) В элементах INPUT 1-й формы выбирается размер таблицы,
+            (в) По кнопке добавляется строка к таблице
+            Значения ячеек таблицы заданы в двумерном массиве
+        </label>
+    </form>
+    <form name="ctrlForm">
+        <p>
+            Количество рядов: <input type="number" id="trows" value="1" min="1">
+        </p>
+        <p>
+            Количество столбцов: <input type="number" id="tcols" value="1" min="1">
+        </p>
+        <p>
+            <input type="button" class="btn" name="btn" value="Создать элементы" onclick='genEl()'>
+        </p>
+    </form>
+    <form name="resForm">
+    </form>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

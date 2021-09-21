@@ -1,0 +1,38 @@
+body {
+    margin-left:10%;
+    margin-right:10%;
+    background:#F0FEFB;
+} 
+table{
+    width: 100%;
+    align-self: auto;
+    background:white;
+    border:1px solid #0b2adb;
+}
+td{
+    border: 1px solid #0b2adb;
+    text-align: center;
+}
+form{
+    height: 100%;
+    border: 1px black;
+    background:white;
+}
+p{
+    padding: 1%;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right:auto;
+}
+.btn{
+    display: block;
+    margin: auto;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+	background: #bcf0fd;
+	color: black;
+    width: 18em;
+    font-size: 18px;
+}
