@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+</head>
+
+<body>
+    
+    <table border="1">
+        <tr>
+            <td valign="top" width="40%">
+                <form NAME="order" id='f1'>
+                    <h1>Формирование заказа</h1>
+                    <table class="tb">
+                        <tr>
+                            <td><b>Фамилия:</b></td>
+                            <td><input type="text" id="surname" name="Фамилия" size="40"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Имя:</b></td>
+                            <td><input type="text" id="name" name="Имя" size="40"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Email:</b></td>
+                            <td><input type="email" id="email" name="Email" size="40"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Дата доставки:</b></td>
+                            <td><input type="date" id="date" name="Дата доставки"></td>
+                        </tr>
+                        <tr>
+                            <td><b>Время доставки:</b></td>
+                            <td><input type="time" id="time" name="Время доставки" value="09:00"></td>
+                        </tr>
+
+                        <tr>
+                            <td><b>Товар:</b></td>
+                            <td>
+                                <input type="radio" name="item" id="r1" value="Тюльпаны"> Тюльпаны<br>
+                                <input type="radio" name="item" id="r2" value="Гиацинты"> Гиацинты<br>
+                                <input type="radio" name="item" id="r3" value="Нарциссы"> Нарциссы<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Количество луковиц:</b></td>
+                            <td>
+                                <input type="range" name="Количество луковиц" id="n" min="1" max="15" value="1"
+                                    size="40" onchange="document.getElementById('nValue').innerHTML = this.value;">
+                                <span id="nValue">1</span>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <input type="button" class="inpbtn" id="createBtn" value="Сформировать документ"
+                        onclick="if (validate_form()) addRow()">
+                </form>
+                <table class="tb">
+                    <tr>
+                        <td>
+                            <button class="slbtn" onclick='lsave()'>Save to local</button>
+                        </td>
+                        <td>
+                            <button class="slbtn" onclick='lload()'>Load from local</button>
+                        </td>
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <button class="slbtn" onclick="tableToJson()">To json</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td valign="top">
+                <table id="resTbl" border="1" class="display">
+                    <thead>
+                    <tr>
+                        <th width="15%">Фамилия</th>
+                        <th width="15%">Имя</th>
+                        <th width="15%">Email</th>
+                        <th width="10%">Дата доставки</th>
+                        <th width="5%">Время доставки</th>
+                        <th width="5%">Товар</th>
+                        <th width="5%">Колво</th>
+                        <th width="1%"></th>
+                    </tr>
+                </thead>
+                </table>
+            </td>
+        </tr>
+    </table>
+    
+    <script src="js/script.js"></script>
+</body>
+
+</html>
