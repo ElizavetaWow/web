@@ -3,6 +3,7 @@ var table = $("#resTbl").DataTable({ "ordering": false, "searching": false });
 resTbl.addEventListener('click', e => {
     let cell = e.target;
     if ((cell.tagName.toLowerCase() != 'td') || (cell.children.length > 0)) { return false; }
+    if (table.row(0).data().length == 1) { return false; }
     let val = cell.innerHTML;
     cell.innerHTML = '<input type="text" id="edit_cell">';
     $('#edit_cell').focus();
