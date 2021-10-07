@@ -1,4 +1,5 @@
 var table = $("#resTbl").DataTable({ "ordering": false, "searching": false });
+var line = "";
 
 resTbl.addEventListener('click', e => {
     let cell = e.target;
@@ -63,35 +64,8 @@ function checkN(val) {
     if ((Number.parseInt(val) <= document.getElementById('n').max) && (Number.parseInt(val) >= document.getElementById('n').min)) { return true; }
 }
 
-function addRow1() {
-    let vals = []
-    let table = document.getElementById('resTbl')
-    let r = table.rows.length;
-    let c = table.rows[0].cells.length;
-    if (document.getElementById("r1").checked)
-        item = document.getElementById("r1").value;
-    else if (document.getElementById("r2").checked)
-        item = document.getElementById("r2").value;
-    else if (document.getElementById("r3").checked)
-        item = document.getElementById("r3").value;
-    vals.push(document.getElementById('surname').value)
-    vals.push(document.getElementById('name').value)
-    vals.push(document.getElementById('email').value)
-    date = document.getElementById('date').value
-    vals.push(date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4))
-    vals.push(document.getElementById('time').value)
-    vals.push(item)
-    vals.push(document.getElementById('n').value)
-    vals.push("<button class='delbtn' onclick='this.closest(" + '"tr"' + ").remove()'></button>")
-    let row = table.insertRow();
-    for (let j = 0; j < c; j++) {
-        let cell = row.insertCell(j);
-        cell.innerHTML = vals[j];
-    }
-}
 
 function addRow() {
-    var t = $('#resTbl').DataTable();
     let vals = []
     if (document.getElementById("r1").checked)
         item = document.getElementById("r1").value;
@@ -109,7 +83,7 @@ function addRow() {
     vals.push(document.getElementById('n').value)
     let c = "$('#resTbl').DataTable().row(this.parentElement.parentElement.rowIndex-1).remove().draw(false)"
     vals.push("<button class='delbtn' onclick=" + c + "></button>")
-    t.row.add(vals).draw(false);
+    table.row.add(vals).draw(false);
 }
 
 function validate_form() {
@@ -188,6 +162,52 @@ function tableToJson() {
         }
         data.push(line);
     }
-    alert(JSON.stringify(data));
+    line = JSON.stringify(data);
+    alert(line);
 
+}
+
+function tableFromJson() {
+    while (table.data().length > 0){
+        table.row(0).remove().draw(false);
+    }
+    let parsed = JSON.parse(line)
+    for (let i = 0; i < parsed.length; i++) {
+        let vals = []
+        for (let key in parsed[i]) {
+            vals.push(parsed[i][key]);
+        }
+        let c = "$('#resTbl').DataTable().row(this.parentElement.parentElement.rowIndex-1).remove().draw(false)"
+        vals.push("<button class='delbtn' onclick=" + c + "></button>")
+        table.row.add(vals).draw(false);
+    }
+    alert("Данные обработаны")
+    
+}
+
+function addRow1() {
+    let vals = []
+    let table = document.getElementById('resTbl')
+    let r = table.rows.length;
+    let c = table.rows[0].cells.length;
+    if (document.getElementById("r1").checked)
+        item = document.getElementById("r1").value;
+    else if (document.getElementById("r2").checked)
+        item = document.getElementById("r2").value;
+    else if (document.getElementById("r3").checked)
+        item = document.getElementById("r3").value;
+    vals.push(document.getElementById('surname').value)
+    vals.push(document.getElementById('name').value)
+    vals.push(document.getElementById('email').value)
+    date = document.getElementById('date').value
+    vals.push(date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4))
+    vals.push(document.getElementById('time').value)
+    vals.push(item)
+    vals.push(document.getElementById('n').value)
+    vals.push("<button class='delbtn' onclick='this.closest(" + '"tr"' + ").remove()'></button>")
+    let row = table.insertRow();
+    for (let j = 0; j < c; j++) {
+        let cell = row.insertCell(j);
+        cell.innerHTML = vals[j];
+    }
 }
