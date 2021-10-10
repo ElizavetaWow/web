@@ -1,0 +1,71 @@
+body {
+    margin-left:1%;
+    margin-right:1%;
+    background:#F0FEFB;
+} 
+table{
+    width: 100%;
+    background:white;
+}
+
+form{
+    background:white;
+    height: 100%;
+}
+h1{
+    margin-left: auto;
+    margin-right: auto; 
+    width: 10em;
+}
+.inpbtn{
+    display: block;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+	background: #22A522;
+	color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    font-size: 16px;
+}
+.slbtn{
+    display: block;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    font-size: 16px;
+}
+.tb{
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+}
+.tb td{
+    height: 35px;
+}
+.delbtn{
+    margin-left: 5%;
+    margin-right: 5%;
+    border: none;
+    height: 20px;
+    width: 20px;
+    background-image: url(img/del.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.restb{
+    margin-left: auto;
+    margin-right: auto;
+    width: 99%;
+    border: 1px solid black;
+}
