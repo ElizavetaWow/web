@@ -56,8 +56,8 @@ function checkEmail(val) {
 
 function checkItem(val) {
     lst = []
-    for (let i = 0; i < document.getElementsByName("item").length; i++)
-        lst.push(document.getElementsByName("item")[i].value)
+    for (let i = 0; i < $("[name='item']").length; i++)
+        lst.push($("[name='item']").toArray()[i].value)
     if (lst.includes(val)) { return true; }
 }
 function checkN(val) {
@@ -67,20 +67,20 @@ function checkN(val) {
 
 function addRow() {
     let vals = []
-    if (document.getElementById("r1").checked)
-        item = document.getElementById("r1").value;
-    else if (document.getElementById("r2").checked)
-        item = document.getElementById("r2").value;
-    else if (document.getElementById("r3").checked)
-        item = document.getElementById("r3").value;
-    vals.push(document.getElementById('surname').value)
-    vals.push(document.getElementById('name').value)
-    vals.push(document.getElementById('email').value)
-    date = document.getElementById('date').value
+    if ($('#r1')[0].checked)
+        item = $('#r1').val();
+    else if ($('#r2')[0].checked)
+        item = $('#r2').val();
+    else if ($('#r3')[0].checked)
+        item = $('#r3').val();
+    vals.push($('#surname').val())
+    vals.push($('#name').val())
+    vals.push($('#email').val())
+    date = $('#date').val()
     vals.push(date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4))
-    vals.push(document.getElementById('time').value)
+    vals.push($('#time').val())
     vals.push(item)
-    vals.push(document.getElementById('n').value)
+    vals.push($('#n').val())
     vals.push("<button class='delbtn' onclick='delRow(this)'></button>")
     table.row.add(vals).draw(false);
     toServer();
@@ -92,7 +92,7 @@ function delRow(el) {
 }
 
 function validate_form() {
-    f = document.getElementById('f1');
+    f = $('#f1')[0];
     let err = "";
     for (var i = 0; i < f.elements.length; i++)
         if (f.elements[i].value == "")
@@ -115,42 +115,37 @@ function validate_form() {
 }
 
 function lsave() {
-    if (document.getElementById("r1").checked)
-        item = document.getElementById("r1").value;
-    else if (document.getElementById("r2").checked)
-        item = document.getElementById("r2").value;
-    else if (document.getElementById("r3").checked)
-        item = document.getElementById("r3").value;
-    let surname = document.getElementById('surname').value
-    let namee = document.getElementById('name').value
-    let date = document.getElementById('date').value
-    let time = document.getElementById('time').value
-    let n = document.getElementById('n').value
-    let email = document.getElementById('email').value
-    localStorage.setItem('surname', surname)
-    localStorage.setItem('name', namee)
-    localStorage.setItem('date', date)
-    localStorage.setItem('time', time)
+    if ($('#r1')[0].checked)
+        item = $('#r1').val();
+    else if ($('#r2')[0].checked)
+        item = $('#r2').val();
+    else if ($('#r3')[0].checked)
+        item = $('#r3').val();
+    localStorage.setItem('surname', $('#surname').val())
+    localStorage.setItem('name', $('#name').val())
+    localStorage.setItem('date', $('#date').val())
+    localStorage.setItem('time', $('#time').val())
     localStorage.setItem('item', item)
-    localStorage.setItem('n', n)
-    localStorage.setItem('email', email)
+    localStorage.setItem('n', $('#n').val())
+    localStorage.setItem('email', $('#email').val())
     alert('Данные сохранены')
 }
 
 function lload() {
-    document.getElementById('surname').value = localStorage.getItem('surname')
-    document.getElementById('name').value = localStorage.getItem('name')
-    document.getElementById('date').value = localStorage.getItem('date')
-    document.getElementById('time').value = localStorage.getItem('time')
-    document.getElementById('n').value = localStorage.getItem('n')
-    document.getElementById('email').value = localStorage.getItem('email')
-    if (localStorage.getItem('item') == document.getElementById("r1").value)
-        document.getElementById("r1").checked = true;
-    else if (localStorage.getItem('item') == document.getElementById("r2").value)
-        document.getElementById("r2").checked = true;
-    else if (localStorage.getItem('item') == document.getElementById("r3").value)
-        document.getElementById("r3").checked = true;
-    document.getElementById('nValue').innerHTML = localStorage.getItem('n');
+    $('#surname').val(localStorage.getItem('surname'))
+    $('#name').val(localStorage.getItem('name'))
+    $('#date').val(localStorage.getItem('date'))
+    $('#time').val(localStorage.getItem('time'))
+    $('#n').val(localStorage.getItem('n'))
+    $('#email').val(localStorage.getItem('email'))
+
+    if (localStorage.getItem('item') == $('#r1').val())
+        $('#r1')[0].checked = true;
+    else if (localStorage.getItem('item') == $('#r2').val())
+        $('#r2')[0].checked = true;
+    else if (localStorage.getItem('item') == $('#r3').val())
+        $('#r3')[0].checked = true;
+    $('#nValue')[0].innerHTML = localStorage.getItem('n');
 }
 
 function tableToJson() {
@@ -171,12 +166,10 @@ function tableToJson() {
 }
 
 function tableFromJson(line) {
-    alert("end1")
     while (table.data().length > 0) {
         table.row(0).remove().draw(false);
     }
     let parsed = JSON.parse(line)
-
     for (let i = 0; i < parsed.length; i++) {
         let vals = []
         for (let key in parsed[i]) {
@@ -185,7 +178,6 @@ function tableFromJson(line) {
         vals.push("<button class='delbtn' onclick='delRow(this)'></button>")
         table.row.add(vals).draw(false);
     }
-    alert("Данные обработаны")
 }
 
 function toServer() {
@@ -193,36 +185,9 @@ function toServer() {
         type: 'POST',
         url: 'http://localhost/t-5/t-5.php',
         dataType: 'json',
-        data: "line=" + tableToJson(),
+        data: { text: tableToJson() },
         success: function (ans) {
             tableFromJson(ans);
         }
     });
-}
-
-function addRow1() {
-    let vals = []
-    let table = document.getElementById('resTbl')
-    let r = table.rows.length;
-    let c = table.rows[0].cells.length;
-    if (document.getElementById("r1").checked)
-        item = document.getElementById("r1").value;
-    else if (document.getElementById("r2").checked)
-        item = document.getElementById("r2").value;
-    else if (document.getElementById("r3").checked)
-        item = document.getElementById("r3").value;
-    vals.push(document.getElementById('surname').value)
-    vals.push(document.getElementById('name').value)
-    vals.push(document.getElementById('email').value)
-    date = document.getElementById('date').value
-    vals.push(date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4))
-    vals.push(document.getElementById('time').value)
-    vals.push(item)
-    vals.push(document.getElementById('n').value)
-    vals.push("<button class='delbtn' onclick='this.closest(" + '"tr"' + ").remove()'></button>")
-    let row = table.insertRow();
-    for (let j = 0; j < c; j++) {
-        let cell = row.insertCell(j);
-        cell.innerHTML = vals[j];
-    }
 }
