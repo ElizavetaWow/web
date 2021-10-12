@@ -86,8 +86,8 @@ function addRow() {
     toServer();
 }
 
-function delRow(el){
-    $('#resTbl').DataTable().row(el.parentElement.parentElement.rowIndex-1).remove().draw(false);
+function delRow(el) {
+    $('#resTbl').DataTable().row(el.parentElement.parentElement.rowIndex - 1).remove().draw(false);
     toServer();
 }
 
@@ -172,7 +172,7 @@ function tableToJson() {
 
 function tableFromJson(line) {
     alert("end1")
-    while (table.data().length > 0){
+    while (table.data().length > 0) {
         table.row(0).remove().draw(false);
     }
     let parsed = JSON.parse(line)
@@ -190,13 +190,12 @@ function tableFromJson(line) {
 
 function toServer() {
     $.ajax({
-    type:'POST',
-    url:'t-5.php',
-    dataType:'json',
-    data:"line="+tableToJson(),
-    success:function(html) {
-        console.log(html);
-        tableFromJson(html);
+        type: 'POST',
+        url: 'http://localhost/t-5/t-5.php',
+        dataType: 'json',
+        data: "line=" + tableToJson(),
+        success: function (ans) {
+            tableFromJson(ans);
         }
     });
 }
