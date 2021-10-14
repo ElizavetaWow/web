@@ -191,3 +191,16 @@ function toServer() {
         }
     });
 }
+
+$("button.slbtn").hover(function () {
+    color = $(this).css("background-color");
+    $(this).css({ "background-color": "#94CC94", "font-weight": "bolder" });
+}, function () {
+    $(this).css({ "background-color": color, "font-weight": "" });
+});
+
+$("input:button.inpbtn").hover(function () {
+    $(this).css({ "font-weight": "bolder",  "border": "3px solid #ddd", "border-style":"double"});
+}, function () {
+    $(this).css({ "font-weight": "", "border": "none"});
+});
