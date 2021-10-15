@@ -1,5 +1,10 @@
 var table = $("#resTbl").DataTable({ "ordering": false, "searching": false });
 
+$(document).ready(function () {
+    fromServer()
+}
+);
+
 resTbl.addEventListener('click', e => {
     let cell = e.target;
     if ((cell.tagName.toLowerCase() != 'td') || (cell.children.length > 0)) { return false; }
@@ -149,19 +154,19 @@ function lload() {
 }
 
 function tableToJson() {
-    let table = document.getElementById('resTbl')
     let headers = [];
-    for (let i = 0; i < table.rows[0].cells.length - 1; i++) {
-        headers[i] = table.rows[0].cells[i].innerHTML.toLowerCase().replace(/ /gi, '_');
-    }
+    $('#resTbl thead tr th').each(function(){
+        headers.push($(this).html())
+    })
+    headers.pop()
     let data = [];
-    for (let i = 1; i < table.rows.length; i++) {
+    table.rows().data().each(function(val, ind){
         let line = {};
-        for (let j = 0; j < table.rows[i].cells.length - 1; j++) {
-            line[headers[j]] = table.rows[i].cells[j].innerHTML;
+        for (let i = 0; i < headers.length; i++) {
+            line[headers[i]] = val[i];
         }
         data.push(line);
-    }
+    })
     return JSON.stringify(data);
 }
 
@@ -170,6 +175,7 @@ function tableFromJson(line) {
         table.row(0).remove().draw(false);
     }
     let parsed = JSON.parse(line)
+    
     for (let i = 0; i < parsed.length; i++) {
         let vals = []
         for (let key in parsed[i]) {
@@ -185,7 +191,16 @@ function toServer() {
         type: 'POST',
         url: 'http://localhost/t-5/t-5.php',
         dataType: 'json',
-        data: { text: tableToJson() },
+        data: { flag: 0, text: tableToJson() }
+    });
+}
+
+function fromServer() {
+    $.ajax({
+        type: 'POST',
+        url: 'http://localhost/t-5/t-5.php',
+        dataType: 'json',
+        data: { flag: 1 },
         success: function (ans) {
             tableFromJson(ans);
         }
@@ -200,7 +215,7 @@ $("button.slbtn").hover(function () {
 });
 
 $("input:button.inpbtn").hover(function () {
-    $(this).css({ "font-weight": "bolder",  "border": "3px solid #ddd", "border-style":"double"});
+    $(this).css({ "font-weight": "bolder", "border": "3px solid #ddd", "border-style": "double" });
 }, function () {
-    $(this).css({ "font-weight": "", "border": "none"});
+    $(this).css({ "font-weight": "", "border": "none" });
 });
