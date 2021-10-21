@@ -81,14 +81,21 @@ function addRow() {
     vals.push($('#surname').val())
     vals.push($('#name').val())
     vals.push($('#email').val())
-    date = $('#date').val()
-    vals.push(date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4))
+    vals.push(formate_date($('#date').val()))
     vals.push($('#time').val())
     vals.push(item)
     vals.push($('#n').val())
     vals.push("<button class='delbtn' onclick='delRow(this)'></button>")
     table.row.add(vals).draw(false);
     toServer();
+}
+
+function formate_date(date){
+    return date.slice(8) + "." + date.slice(5, 7) + "." + date.slice(0, 4)
+}
+
+function unformate_date(date){
+    return date.slice(6) + "/" + date.slice(3, 5) + "/" + date.slice(0, 2)
 }
 
 function delRow(el) {
@@ -163,7 +170,11 @@ function tableToJson() {
     table.rows().data().each(function(val, ind){
         let line = {};
         for (let i = 0; i < headers.length; i++) {
-            line[headers[i]] = val[i];
+            if (headers[i] == "Дата доставки"){
+                line[headers[i]] = unformate_date(val[i]);
+            }
+            else{ line[headers[i]] = val[i];}
+           
         }
         data.push(line);
     })
@@ -179,7 +190,11 @@ function tableFromJson(line) {
     for (let i = 0; i < parsed.length; i++) {
         let vals = []
         for (let key in parsed[i]) {
-            vals.push(parsed[i][key]);
+            if (key == "Дата доставки"){
+                vals.push(formate_date(parsed[i][key]));
+            }
+            else{vals.push(parsed[i][key]);}
+            
         }
         vals.push("<button class='delbtn' onclick='delRow(this)'></button>")
         table.row.add(vals).draw(false);
