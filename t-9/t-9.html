@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парковки и точки</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="key.js"></script>
+</head>
+
+<body onload='getData()'>
+    <h2>Крылова Лиза ПИ19-2 Вариант 9</h2>
+    <table>
+        <tr>
+            <td valign=top width="600">
+                <canvas id="cnvs" width="600" height="600"></canvas>
+            </td>
+            <td valign=top>
+                <table id="btntbl">
+                    <tr>
+                        <td>
+                            <button onclick='draw(0)'>Координаты парковок</button>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Число точек = <input id='npoints' type='number' min=0 max=400 style='width:80px' value=10>
+                            <br>
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick='draw(1)'>Сгенерировать координаты</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button onclick='drawline()'>Провести прямую</button>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+    </table>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

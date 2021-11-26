@@ -1,0 +1,38 @@
+body {
+    margin-left:1%;
+    margin-right:1%;
+    background:#0077ff0a;
+} 
+table{
+    width: 80%;
+    border-spacing: 0;
+    margin: 0 auto;
+}
+h2{
+    text-align: center
+}
+
+#cnvs {
+    background-color: white;
+    border: 2px solid #982CF6;
+    display: block;
+    margin: 0 auto;
+}
+#btntbl{
+    width: 90%;
+    margin: 0 auto;
+}
+
+button{
+    margin-bottom: 15px;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+	background: #22A522;
+	color: white;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18em;
+    font-size: 16px;
+}
