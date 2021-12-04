@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Графики парковок</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+    <script src="bike_parking.js"></script>
+    <script src="taxi_parking.js"></script>
+</head>
+
+<body onload='getDistricts()'>
+    <h2>Крылова Лиза ПИ19-2 Вариант 5</h2>
+    <table>
+        <tr>
+            <td colspan="2" valign=top>
+                <table id="tblstat" border>
+                    <tr>
+                        <th>N</th>
+                        <th>Округ</th>
+                        <th>Парковки такси</th>
+                        <th>Велосипедные парковки</th>
+                    </tr>
+                </table>
+            </td>
+        <tr>
+            <td valign=top align=left>
+                <canvas id="cnvs" width=600 height="400"></canvas>
+            </td>
+            <td valign=top align=right>
+                <div id="zchart"></div>
+            </td>
+        </tr>
+        </tr>
+    </table>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
