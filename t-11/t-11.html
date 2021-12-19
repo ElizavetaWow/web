@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Start in react</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<script type="text/babel">
+	class ClickButton extends React.Component {
+		constructor(props) {
+			super(props);
+			this.press = this.press.bind(this);
+		}
+		press() {
+			alert(this.props.city.getName())
+		}
+		render() {
+			return <button onClick={this.press}>Get {this.props.n} city name</button>
+		}
+	}
+	function getName() {
+		return this.name;
+	}
+	let city1 = { name: "Москва" };
+	let city2 = { name: "Санкт-Петербург" };
+	city1.getName = getName;
+	city2.getName = getName;
+	ReactDOM.render(<div><ClickButton city={city1} n="1" /><ClickButton city={city2} n="2" /></div>, document.getElementById("btns"))
+
+</script>
+
+<body>
+	<h2>Крылова Лиза ПИ19-2 Вариант 3</h2>
+	<p>Создайте у объектов city1 и city2 методы getName(), которые вернут соответствующие названия городов</p>
+	<div id="btns">
+	</div>
+</body>
+
+</html>
