@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задача</title>
+</head>
+
+<script>
+    function doubling() {
+        let n = document.getElementById('n').value
+        document.getElementById('n').value = 2 * n
+
+    };
+
+    function sqring() {
+        let n = document.getElementById('n').value
+        document.getElementById('n').value = n * n
+
+    };
+</script>
+
+<body>
+    <h2>Крылова Елизавета Задача 69</h2>
+    <h3></h3>
+    <label>
+        В окне 3 элемента: элемент для ввода текста и 2 кнопки. Вводится число.
+        <br>
+        По нажатию одной кнопки отображается квадрат числа. При нажатии другой - удвоенное число
+    </label>
+    <form >
+        <p>
+            <input type="number" id="n" value="3">
+        </p>
+        <p>
+            <input type="button" class="btn" id="btn1" value="Возвести в квадрат" onclick='sqring()'>
+        </p>
+        <p>
+            <input type="button" class="btn" id="btn2" value="Удвоить" onclick='doubling()'>
+        </p>
+    </form>
+</body>
+
+<style>
+    body {
+    margin-left:10%;
+    margin-right:10%;
+    background:#F0FEFB;
+} 
+form{
+    height: 100%;
+    border: 1px black;
+    background:white;
+}
+p{
+    padding: 1%;
+    font-size: 18px;
+    margin-left: auto;
+    margin-right:auto;
+}
+.btn{
+    display: block;
+    border-radius: 7px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+	background: #bcf0fd;
+	color: black;
+    width: 18em;
+    font-size: 18px;
+}
+</style>
+
+</html>
