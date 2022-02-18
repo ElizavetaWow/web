@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Навигатор</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="key.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU"
+        type="text/javascript">
+        </script>
+    <script type="text/javascript">
+
+        var myMap;
+        var myRoute;
+
+        ymaps.ready(init);
+        function init() {
+            myMap = new ymaps.Map("map", {
+                center: [55.76, 37.64],
+                zoom: 12,
+                controls: ['zoomControl', 'typeSelector']
+            });
+        }
+
+        function makeRoute(modeRoute) {
+            clearMap()
+            var pointFrom = document.getElementById('pointFrom').value
+            var pointTo = document.getElementById('pointTo').value
+
+            if (pointFrom == '') {
+                document.getElementById('pointFrom').focus
+                alert("Укажите точку старта");
+                return
+            } else if (pointTo == '') {
+                document.getElementById('pointTo').focus
+                alert("Укажите конечную точку");
+                return
+            }
+
+            myRoute = new ymaps.multiRouter.MultiRoute({
+                referencePoints: [pointFrom, pointTo],
+                params: {
+                    avoidTrafficJams: true,
+                    routingMode: modeRoute
+                }
+            }, {
+                boundsAutoApply: true,
+                routeActiveStrokeWidth: 5,
+                routeActiveStrokeStyle: 'solid',
+                routeActiveStrokeColor: '#00FF7F'
+            });
+            myMap.geoObjects.add(myRoute);
+
+            myRoute.model.events.add('requestsucccess', function () {
+                var activeRoute = myRoute.getActivaRoute();
+                activeRoute.baloon.open();
+                activeRoute.properties.get('distance').text;
+                activeRoute.properties.get('duration').text;
+            }
+            )
+        }
+
+        function clearMap() {
+            myMap.geoObjects.removeAll();
+            myRoute && myMap.geoObjects.remove(myRoute);
+        }
+    </script>
+    <style>
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #block {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        #pointFrom,
+        #pointTo {
+            padding: 2;
+            height: 2vh;
+            width: 30%;
+            background: rgb(252, 251, 235);
+            border: solid 1px black;
+        }
+
+        #mode {
+            padding: 2;
+            height: 2.5vh;
+            width: 15%;
+            background: rgb(252, 251, 235);
+            border: solid 1px black;
+        }
+
+        .btn {
+            height: 3vh;
+            border-radius: 4px;
+            width: 10%;
+            background-color: rgb(203, 255, 210);
+        }
+
+        .btn:hover {
+            background-color: rgb(255, 249, 168);
+            font-style: italic;
+            box-shadow: 0 10px 20px rgb(128, 161, 149);
+        }
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(128, 161, 149, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="block">
+        <input type="text" id="pointFrom" placeholder="Откуда" required></input>
+        <input type="text" id="pointTo" placeholder="Куда" required></input>
+        <select size="1" id="mode">
+            <option selected value="auto">Автомобиль</option>
+            <option value="masstransit">Общественный транспорт</option>
+            <option value="pedestrian">Пешеход</option>
+            <option value="bicycle">Велосипед</option>
+        </select>
+
+        <input type="button" class="btn" value="Построить маршрут"
+            onclick="makeRoute(document.getElementById('mode').options[document.getElementById('mode').options.selectedIndex].value)">
+        <input type="button" class="btn" value="Очистить карту" onclick="clearMap()">
+
+    </div>
+    <div id="map" style="width: 100%; height: 97vh"></div>
+
+</body>
+
+</html>
