@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Скоринг</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <form action="http://localhost:3000/scoring" method="post">
         <h1>Форма для заполнения</h1>
         <p><i>Пожалуйста, заполните форму</i></p>
-        <fieldset>
+        <fieldset id="fieldset1">
             <legend>Контактная информация</legend>
             <label for="name">Имя и фамилия <em>*</em></label>
-            <input type="text" placeholder="Джеймс Бонд" autofocus required><br>
+            <input type="text" name="name" placeholder="Джеймс Бонд" autofocus required><br>
             <label for="telephone">Номер телефона </label>
-            <input type="text" placeholder="+7(xxx)xxx-xx-xx"><br>
+            <input type="text" name="telephone" placeholder="+7(xxx)xxx-xx-xx"><br>
             <label for="email">Электронная почта <em>*</em></label>
-            <input type="text" placeholder="bond@gmail.com" required><br>
+            <input type="text" name="email" placeholder="bond@gmail.com" required><br>
         </fieldset>
-        <fieldset>
+        <fieldset id="fieldset2">
             <legend>Данные для проверки</legend>
             <label for="gender">Пол </label>
             <select name="gender" id="gender">
@@ -53,7 +55,8 @@
             <label for="insurancePolicy">Наличие страхового полиса</label>
             <input type="checkbox" name="insurancePolicy" id="insurancePolicy"><br>
         </fieldset>
-        <input type="submit" class="submit" value="Отправить">
+        <input type="submit" value="Отправить">
     </form>
 </body>
+
 </html>
