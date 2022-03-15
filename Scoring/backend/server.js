@@ -1,5 +1,6 @@
 const express = require('express');
 const cheerio = require('cheerio');
+const path = require('path');
 const fs = require('fs');
 const { Db } = require('mongodb');
 const MongoClient = require("mongodb").MongoClient;
@@ -16,7 +17,7 @@ app.use(
 app.use(express.static('public'));
 
 app.get('/scoring', function(req, res) {
-    res.sendFile('E:/ДЗ/web/Scoring/public/index.html')
+    res.sendFile(path.join(__dirname, '../public/index.html'))
 });
 
 app.post('/scoring', (req, res) => {
@@ -74,7 +75,7 @@ app.post('/scoring', (req, res) => {
 
 
 app.get('/search', function(req, res) {
-    res.sendFile('E:/ДЗ/web/Scoring/public/search.html')
+    res.sendFile(path.join(__dirname, '../public/search.html'))
 });
 
 app.post('/search', (req, res) => {
@@ -93,7 +94,7 @@ app.post('/search', (req, res) => {
                 res.send('Пользователя с указанным email не существует');
                 return
             }
-            fs.readFile('E:/ДЗ/web/Scoring/public/index.html', 'utf8', function(err, data) {
+            fs.readFile(path.join(__dirname, '../public/index.html'), 'utf8', function(err, data) {
                 if (err) {
                     res.send('Возникла ошибка на сервере');
                     return console.log(err);
