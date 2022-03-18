@@ -1,11 +1,8 @@
 const express = require('express');
-const request = require('request'); //отправка http-запросов на сторонние сервисы
-const rp = require('request-promise');
 const cheerio = require('cheerio');
 const path = require('path');
 const fs = require('fs');
 const { Db } = require('mongodb');
-const { post } = require('request');
 const MongoClient = require("mongodb").MongoClient;
 const app = express();
 const port = 3000;
@@ -19,26 +16,11 @@ app.use(
 
 app.use(express.static('public'));
 
-app.get('/scoring', function (req, res) {
+app.get('/scoring', function(req, res) {
     res.sendFile(path.join(__dirname, '../public/index.html'))
 });
 
 app.post('/scoring', (req, res) => {
-    var options = {
-        method: 'post',
-        uri: 'http://localhost:8081/python',
-        body: req.body,
-        json: true
-    }
-    rp(options)
-        .then(function (parsedBody) {
-            //console.log(parsedBody)
-            res.json(parsedBody)
-        })
-        .catch(function (err) {
-            console.log(err);
-        })
-    
     const url = "mongodb://localhost:3001/"
     const client = new MongoClient(url)
 
@@ -50,7 +32,7 @@ app.post('/scoring', (req, res) => {
             if (err) {
                 return console.log(err);
             }
-            //console.log(result);
+            console.log(result);
             console.log(clientInformation);
             client.close();
         })
@@ -88,12 +70,11 @@ app.post('/scoring', (req, res) => {
     if (score > 1.25) {
         line = "кредитоспособный"
     }
-    console.log(`Заёмщик ${line}`)
-    /*res.send(`Заёмщик ${line}`); */
+    res.send(`Заёмщик ${line}`);
 });
 
 
-app.get('/search', function (req, res) {
+app.get('/search', function(req, res) {
     res.sendFile(path.join(__dirname, '../public/search.html'))
 });
 
@@ -171,9 +152,9 @@ app.post('/search', (req, res) => {
                 res.send($.html())
             });
         });
-    }) 
+    })
 });
 
-server.listen(port, function () {
+server.listen(port, function() {
     console.log(`listening on ${port}`);
 })
