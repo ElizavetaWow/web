@@ -1,0 +1,60 @@
+form {
+    text-align: center;
+    margin: 0 auto;
+}
+
+fieldset {
+    text-align: left;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+body {
+    font-family: 'Palatino Linotype', serif;
+    max-width: 650px;
+    padding: 0px 30px;
+}
+
+h1 {
+    margin-bottom: 0px;
+}
+
+p {
+    margin-top: 0px;
+}
+
+legend {
+    padding: 0px 3px;
+    font-weight: bold;
+    font-variant: small-caps;
+}
+
+label {
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 6px;
+}
+
+input:focus {
+    background-color: #f8f8f881;
+}
+
+input,
+textarea {
+    width: 289px;
+}
+
+textarea {
+    height: 100px;
+}
+
+select {
+    width: 295px;
+}
+
+input:disabled,
+select:disabled {
+    background-color: #ffffff;
+    opacity: 1;
+}
