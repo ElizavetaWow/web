@@ -3,7 +3,6 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const nodemailer = require('nodemailer');
-const { config } = require('process');
 
 const port = 5000;
 
@@ -13,6 +12,7 @@ io.on('connection', function(socket){
     socket.on('eventClient', function(data){
         console.log("Сообщение от клиента: "+ data.message);
         console.log("Получатель: "+ data.recipient);
+        const config = require('./config.json');
         var transporter = nodemailer.createTransport({
             host : "smtp.gmail.com",
             port: 465,
