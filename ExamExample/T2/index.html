@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Oil rate</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <script>
+    async function getPrice() {
+      let oil = document.getElementById("select").value;
+      let url = "http://localhost:5000/get/"+oil;
+
+      let resp = await fetch(url);
+      let data = await resp.json();
+
+      document.getElementById("price_value").innerText = data["price"];
+      document.getElementById("price_dynamics").innerText = data["dynamics"];
+      
+    }
+  </script>
+  <h1>Сервис для мониторинга цен на нефть</h1>
+  <div id="block">
+    <label for="select">Выберите марку: </label>
+    <select name="select" id="select" onchange="getPrice()">
+      <option value="not_selected">Не выбрано</option>
+      <option value="BRENT">BRENT</option>
+      <option value="WTI">WTI</option>
+    </select>
+    <br>
+    <label for="price_value"> Цена: </label>
+    <span id="price_value" style="margin-right: 20px">0</span>
+    <span id="price_dynamics">0</span>
+    </div>  
+</body>
+
+</html>

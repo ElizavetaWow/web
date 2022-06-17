@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Курсы валют</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function getRate() {
+            let url = "https://www.cbr-xml-daily.ru/daily_json.js";
+            currs = ["GBP", "BYN", "USD", "EUR", "TRY"]
+            fetch(url) // Get request
+                .then((res)=>{
+                    return res.json();
+                })
+                .then((data)=> {
+                    for (let i = 0; i < currs.length; i++) {
+                        document.getElementById("curr_"+i).innerText = data["Valute"][currs[i]]["Name"];
+                        document.getElementById("yest_"+i).innerText = data["Valute"][currs[i]]["Previous"];
+                        document.getElementById("today_"+i).innerText = data["Valute"][currs[i]]["Value"];
+                    }
+                });
+        }
+    </script>
+</head>
+<body onload=getRate()>
+    <h2>Курсы валют</h2>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+            <tr>
+                <th>Валюта</th>
+                <th>Вчерашний курс</th>
+                <th>Сегодняшний курс</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td id="curr_0"></td>
+                <td id="yest_0"></td>
+                <td id="today_0"></td>
+            </tr>
+            <tr>
+                <td id="curr_1"></td>
+                <td id="yest_1"></td>
+                <td id="today_1"></td>
+            </tr>
+            <tr>
+                <td id="curr_2"></td>
+                <td id="yest_2"></td>
+                <td id="today_2"></td>
+            </tr>
+            <tr>
+                <td id="curr_3"></td>
+                <td id="yest_3"></td>
+                <td id="today_3"></td>
+            </tr>
+            <tr>
+                <td id="curr_4"></td>
+                <td id="yest_4"></td>
+                <td id="today_4"></td>
+            </tr>
+            <tbody>
+        </table>
+    </div>
+
+</body>
+</html>

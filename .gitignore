@@ -3,3 +3,5 @@ keys_fold
 mongodb/
 Scoring/data
 mongodb_serv.txt
+ExamExample/*/data
+ExamExample/*/node_modules
